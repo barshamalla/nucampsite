@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { CAMPSITES } from '../shared/campsites'
 
 class CampsiteInfo extends React.Component{
     constructor(props){
@@ -36,12 +37,14 @@ class CampsiteInfo extends React.Component{
         return <div />;
     }
  
-    render(campsite){
-        if (campsite) {
+    render(){
+        if (this.props.campsite) {
             return(
-                <div className="row"> 
-                    {this.renderCampsite(campsite)}
-                    {this.renderComments(campsite.comments)}
+                <div className="container">
+                    <div className="row"> 
+                        {this.renderCampsite(this.props.campsite)}
+                        {this.renderComments(this.props.campsite.comments)}
+                    </div>
                 </div>
             ); 
         }
