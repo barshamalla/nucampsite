@@ -7,12 +7,12 @@ import 'typeface-lobster';
 import 'typeface-open-sans';
 import App from './App';
 
-function Hello () {
- return(
-     <div>HEllO</div>
- )
+// function Hello () {
+//  return(
+//      <div>HEllO</div>
+//  )
 
-}
+// }
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -11,12 +11,11 @@ class Main extends Component {
       campsites: CAMPSITES,
       selectedCampsite: null
     };
-
   }
 
   onCampsiteSelect(campsiteId){
     //always use setState is used outside of constructor  
-     this.setState({selectedCampsite:campsiteId});
+    this.setState({selectedCampsite:campsiteId});
  }
   
  render() {
