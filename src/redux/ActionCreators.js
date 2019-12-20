@@ -10,7 +10,8 @@ export const fetchCampsites = () => dispatch => {
             if (response.ok) {
                  return response;
             } else {
-                const error = new Error(`Error ${response.status}: ${response.statusText}`);                error.response = response;
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);                
+                error.response = response;
                 throw error;
             }
         },
@@ -36,6 +37,7 @@ export const addCampsites = campsites => ({
     type: ActionTypes.ADD_CAMPSITES,
     payload: campsites
 });
+
 export const fetchComments = () => dispatch => {    
     return fetch(baseUrl + 'comments')
     .then(response => {
