@@ -2,43 +2,39 @@ import React from 'react';
 import {  Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
-import { Fade, Stagger } from 'react-animation-components';
 
-
+//below is updated for assnmt task 1
 function PartnerList(props){
-       const partners = props.partners.partners.map(partner => {
-       return (
-           <Fade in key={partner.id}>
-                <Media tag="li" >
-                <RenderPartner partner={partner} /> 
-                </Media>
-                </Fade>
-        );
-    });
-    if (props.isLoading) {
+
+       //this is moved from const partner for task1
+       const partners = props.partners;
+
+    if (props.partners.isLoading) {
         return ( 
-        <Loading />
+                    <Loading />
         );   
     }
-    if (props.errMess) {
+    if (props.partners.errMess) {
         return (
-            <div className="col">
-                <h4>{props.errMess}</h4>
-            </div>         
+            <div className="container">
+                <div className="row"> 
+                    <div className="col">
+                        <h4>{props.partners.errMess}</h4>
+                    </div>
+                </div>
+            </div>
         );
     } 
    
    return (
     <div className="col mt-4">
-        <Stagger in >
-            <Media list> 
-            {partners}
-            </Media>
-         </Stagger>
-       
+    <Media list={partners}> {/* tag="li" key={partner.id}> */}
+        {/* <RenderPartner partner={partner} />  //this line is confusing */} 
+    </Media>
     </div>
      );
+   // upto here is moved from below for assignemtn
+
 
 }
 
@@ -47,7 +43,7 @@ function RenderPartner({partner}) {
     if(partner){
         return (
             <React.Fragment> 
-                <Media object src={baseUrl + partner.image} alt={partner.image} width="150px"/>
+                <Media object src={partner.image} alt={partner.image} width="150px"/>
                 <Media body className = "ml-5 mb-4"><Media heading>{partner.name}</Media>{partner.description}</Media>  
             </React.Fragment>
         );
@@ -55,10 +51,18 @@ function RenderPartner({partner}) {
         return(
         <div />
         )}
-    };
+}
 
 function About(props) {
-   
+
+    // below is moved to new component partnerlist above for task 1
+    // const partners = props.partners.map(partner => {
+    //      return (
+    //     <Media tag="li" key={partner.id}><RenderPartner partner={partner} /> </Media>
+    //      );
+
+    // });
+
     return (
         <div className="container">
             <div className="row">
@@ -111,8 +115,12 @@ function About(props) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-                <PartnerList isLoading={props.partners.isLoading} partners={props.partners} />
-            
+                <PartnerList partners={props.partners} />
+                {/* <div className="col mt-4">                
+                     <Media list> //this is removed for task 1 end linr
+                        {partners}
+                    </Media>  
+                </div> */}
             </div>
         </div>
     );
